@@ -7,8 +7,9 @@
 ShiftrConnector shiftrConnector;
 
 void setup() {
-  pinMode(PIN_BUTTON, OUTPUT);
-  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_BUTTON, INPUT);
+  pinMode(PIN_LED_RED, OUTPUT);
+  pinMode(PIN_LED_BLUE, OUTPUT);
 
   Bridge.begin(); // Yun bridge
   logger->init();
