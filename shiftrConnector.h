@@ -1,7 +1,5 @@
 #pragma once
 
-#include "platforms.h"
-
 #include <Arduino.h>
 
 //https://github.com/256dpi/arduino-mqtt
@@ -10,7 +8,7 @@
 class ShiftrConnector {
 
   public :
-    void sendMessage(String sender, int counter);
+    void sendMessage(int color);
 
     void init();
 

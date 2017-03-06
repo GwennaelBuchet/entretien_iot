@@ -32,13 +32,11 @@ void loop() {
   //need to refresh shiftr API in order to send and receive new messages
   shiftrConnector.loop();
 
-  int digital
+  boolean pressed = debounce();
+  if (pressed == true) {
+    shiftrConnector.sendMessage(PIN_LED_RED);
+  }
 
-}
-
-void toggleLed(int color) {
-  int state = digitalRead(color);
-  digitalWrite(color, 1 - state);
 }
 
 

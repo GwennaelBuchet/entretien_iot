@@ -6,8 +6,17 @@
 #include "constants.h"
 
 void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
-  logger->log("Receiving from Shiftr.io...");
-  logger->log(" done. \n");
+  logger->log("Receiving from Shiftr.io :");
+  
+  logger->log("\n");
+  logger->log(payload);
+  logger->log("\n");
+  
+
+  //toggle led :
+  int color = payload.toInt();  
+  int state = digitalRead(color);
+  digitalWrite(color, 1 - state);
 }
 
 void ShiftrConnector::init()
@@ -39,11 +48,11 @@ void ShiftrConnector::loop()
   }
 }
 
-void ShiftrConnector::sendMessage(String sender, int color)
+void ShiftrConnector::sendMessage(int color)
 {
   logger->log("Sending to Shiftr...");
 
-  String msg = "{\"toggle\" : " + String(color) + "}";
+  String msg = "" + String(color);
 
   client.publish(SHIFTR_NAMESPACE, msg);
   logger->log(" done. \n");
