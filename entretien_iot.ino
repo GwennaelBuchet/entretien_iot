@@ -32,7 +32,7 @@ void loop() {
   //need to refresh shiftr API in order to send and receive new messages
   shiftrConnector.loop();
 
-  
+  int digital
 
 }
 
@@ -41,3 +41,29 @@ void toggleLed(int color) {
   digitalWrite(color, 1 - state);
 }
 
+
+/**
+   check if the button was pressed.
+*/
+boolean debounce() {
+  static int buttonState;
+  static int lastButtonState = LOW;
+  static long lastDebounceTime = 0;
+  static long debounceDelay = 50;
+
+  boolean retVal = false;
+  int reading = digitalRead(PIN_BUTTON);
+  if (reading != lastButtonState) {
+    lastDebounceTime = millis();
+  }
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    if (reading != buttonState) {
+      buttonState = reading;
+      if (buttonState == HIGH) {
+        retVal = true;
+      }
+    }
+  }
+  lastButtonState = reading;
+  return retVal;
+}
