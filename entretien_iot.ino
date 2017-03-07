@@ -33,8 +33,10 @@ void loop() {
   shiftrConnector.loop();
 
   boolean pressed = debounce();
+  static int switchedLed = PIN_LED_RED;
   if (pressed == true) {
-    shiftrConnector.sendMessage(PIN_LED_RED);
+    switchedLed = 12 + (13 - switchedLed);
+    shiftrConnector.sendMessage(switchedLed);
   }
 
 }
